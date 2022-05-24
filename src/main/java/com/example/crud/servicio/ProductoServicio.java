@@ -28,9 +28,9 @@ public class ProductoServicio {
 		productoRepositorio.delete(producto);
 	}
 	//Modificar un producto
-	public Producto modificarProducto(Producto producto) {
-//		return productoRepositorio.modifyProducto(producto.getId(), producto);
-		return null;
+	public void modificarProducto(Producto producto) {
+		productoRepositorio.updateNombreById(producto.getId(), producto.getNombre());
+//		return null;
 	}
 	//Buscar un producto por nombre
 	public Optional<Producto> buscaProducto(String nombre){
