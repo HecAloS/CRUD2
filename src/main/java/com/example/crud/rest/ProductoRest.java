@@ -38,6 +38,8 @@ public class ProductoRest {
 	@GetMapping("/listadoProductos")
 	private ResponseEntity<List<Producto>> listarProductos() {
 		log.info("Listar Productos -> GET.");
+		
+//		System.out.println("Listar Productos -> GET");
 		return ResponseEntity.ok(productoServicio.listadoProductos());
 	}
 	@PutMapping("/actualizarProducto")
@@ -56,5 +58,17 @@ public class ProductoRest {
 	private ResponseEntity<Producto> listarProducto(@PathVariable (value = "id") int id) {
 		log.info("Listar UN solo producto -> GET.");
 		return ResponseEntity.ok(productoServicio.buscaId(id));
+	}
+	/*Este metodo solo puede devolver productos con un nombre unico*/
+	@GetMapping("/listarProductoNombre/{nombre}")
+	private ResponseEntity<Producto> listarProductoNombre(@PathVariable (value = "nombre") String nombre) {
+		log.info("Listar UN solo producto  filtrado por nombre-> GET.");
+		return ResponseEntity.ok(productoServicio.buscaProducto(nombre).orElse(null));
+	}
+	/*Este metodo solo puede devolver productos con un nombre de categoria unico*/
+	@GetMapping("/listarProductoCategoria/{categoria}")
+	private ResponseEntity<Producto> listarProductoCategoria(@PathVariable (value = "categoria") String categoria) {
+		log.info("Listar UN solo producto  filtrado por categoria-> GET.");
+		return ResponseEntity.ok(productoServicio.buscaCategoria(categoria).orElse(null));
 	}
 }
