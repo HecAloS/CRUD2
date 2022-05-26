@@ -31,7 +31,7 @@ public class ProductoRest {
 	
 	@PostMapping("/anadir")
 	private ResponseEntity<Producto> anadirProducto(@RequestBody Producto producto) {
-		log.trace("Añadir Producto -> POST.");
+		log.info("Añadir Producto -> POST.");
 		productoServicio.creaProducto(producto);
 		return ResponseEntity.ok(producto);	
 	}
